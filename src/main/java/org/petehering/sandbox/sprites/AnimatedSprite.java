@@ -16,7 +16,10 @@ public class AnimatedSprite implements Drawable
     {
         this.frames = frames;
         this.millisPerFrame = mpf;
-        reset ();
+        playedOnce = false;
+        index = 0;
+        elapsed = 0;
+        start = currentTimeMillis ();
     }
 
     public void reset ()

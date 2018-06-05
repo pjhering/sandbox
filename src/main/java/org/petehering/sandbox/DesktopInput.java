@@ -62,6 +62,7 @@ public abstract class DesktopInput implements Input, KeyListener, MouseInputList
         return mousePoint;
     }
 
+    @Override
     public boolean isMousePressed (int button)
     {
         return 0 <= button
@@ -70,6 +71,7 @@ public abstract class DesktopInput implements Input, KeyListener, MouseInputList
             && !previousButtons[button];
     }
 
+    @Override
     public boolean isMouseDown (int button)
     {
         return 0 <= button

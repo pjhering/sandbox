@@ -19,6 +19,33 @@ public class SpriteSheet
         URL url = getClass ().getResource (path);
         image = ImageIO.read (url);
     }
+    
+    public BufferedImage[] imageArray (int cols, int rows)
+    {
+        return imageArray (0, 0, image.getWidth (), image.getHeight (), cols, rows);
+    }
+    
+    public BufferedImage[] imageArray (int x, int y, int width, int height, int cols, int rows)
+    {
+        BufferedImage[] array = new BufferedImage[cols * rows];
+        int w = width / cols;
+        int h = height / rows;
+        int i = 0;
+
+        for (int r = 0; r < rows; r++)
+        {
+            int sy = y + (r * w);
+
+            for (int c = 0; c < cols; c++)
+            {
+                int sx = x + (c * h);
+                array[i] = image.getSubimage (sx, sy, w, h);
+                i++;
+            }
+        }
+        
+        return array;
+    }
 
     public ImageSprite imageSprite (int x, int y, int width, int height)
     {

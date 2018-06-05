@@ -5,8 +5,6 @@ import java.awt.GraphicsDevice;
 import java.awt.GraphicsEnvironment;
 import static java.lang.Math.round;
 import static java.lang.System.currentTimeMillis;
-import static java.lang.System.out;
-import static java.lang.Thread.sleep;
 import static java.util.Objects.requireNonNull;
 
 public class Loop implements Runnable
@@ -14,7 +12,7 @@ public class Loop implements Runnable
     private final Game game;
     private final View view;
     private boolean running;
-    private long milliseconds;
+    private final long milliseconds;
 
     public Loop (Game game, View view)
     {

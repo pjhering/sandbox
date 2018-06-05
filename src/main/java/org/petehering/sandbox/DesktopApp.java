@@ -7,7 +7,7 @@ import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
 public class DesktopApp
 {
-    private DesktopConfig config;
+    private final DesktopConfig config;
 
     public DesktopApp (DesktopConfig config)
     {
