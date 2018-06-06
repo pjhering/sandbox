@@ -2,6 +2,9 @@ package org.petehering.sandbox;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.awt.image.BufferedImage;
+import java.io.InputStream;
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import static javax.swing.JFrame.EXIT_ON_CLOSE;
 
@@ -22,6 +25,21 @@ public class DesktopApp
         final Loop loop = new Loop (config.game, desktopView);
 
         final JFrame frame = new JFrame (config.title);
+        
+        if (config.icon != null)
+        {
+            try (InputStream stream = getClass ().getResourceAsStream (config.icon))
+            {
+                BufferedImage icon = ImageIO.read (stream);
+                frame.setIconImage (icon);
+            }
+            catch (Exception ex)
+            {
+                // ignore; use default icon
+                ex.printStackTrace ();
+            }
+        }
+        
         frame.setContentPane (desktopView);
         frame.pack ();
         frame.setResizable (false);

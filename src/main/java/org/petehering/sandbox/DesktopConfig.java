@@ -7,4 +7,5 @@ public class DesktopConfig
     public int height = 480;
     public DesktopInput input = null;
     public Game game;
+    public String icon;
 }
