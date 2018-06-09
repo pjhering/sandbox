@@ -38,6 +38,24 @@ public final class Utility
         return value;
     }
     
+    public static <T> T[] requireNonNull (T[] array)
+    {
+        if (array != null)
+        {
+            for (T elem : array)
+            {
+                if (elem == null)
+                {
+                    throw new RuntimeException ("null element");
+                }
+            }
+            
+            return array;
+        }
+        
+        throw new RuntimeException ("null array");
+    }
+    
     public static int requireGreaterThan (int min, int value)
     {
         if (value > min)
