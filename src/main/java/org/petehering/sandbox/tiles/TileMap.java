@@ -1,5 +1,6 @@
 package org.petehering.sandbox.tiles;
 
+import java.awt.Graphics2D;
 import static java.util.Objects.requireNonNull;
 import static org.petehering.sandbox.Utility.requireGreaterThan;
 
@@ -13,6 +14,10 @@ public class TileMap
     public final int width;
     public final int height;
     private final Tile[][] tiles;
+    private int firstRow;
+    private int lastRow;
+    private int firstColumn;
+    private int lastColumn;
     
     
     public TileMap (String tilesetFile, int rows, int columns, int tileWidth, int tileHeight)
@@ -35,5 +40,24 @@ public class TileMap
     public void setTile (int row, int column, Tile tile)
     {
         tiles[row][column] = tile;
+    }
+
+    public void setRange (int firstRow, int firstColumn, int lastRow, int lastColumn)
+    {
+        this.firstRow = firstRow;
+        this.lastRow = lastRow;
+        this.firstColumn = firstColumn;
+        this.lastColumn = lastColumn;
+    }
+
+    public void draw (Graphics2D g, int offsetX, int offsetY)
+    {
+        for (int row = firstRow; row <= lastRow; row++)
+        {
+            for (int col = firstColumn; col <= lastColumn; col++)
+            {
+                tiles[row][col].draw (g, offsetX, offsetY);
+            }
+        }
     }
 }

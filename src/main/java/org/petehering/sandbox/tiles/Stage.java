@@ -1,6 +1,7 @@
 package org.petehering.sandbox.tiles;
 
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 import java.util.List;
 import static java.util.Objects.requireNonNull;
 import java.util.TreeMap;
@@ -17,10 +18,14 @@ public class Stage
     // allows screen to follow an entity
     private Viewport viewport;
     
-    private TileMap tileMap;//TODO
+    private TileMap tileMap;
+    private int firstRow;
+    private int lastRow;
+    private int firstColumn;
+    private int lastColumn;
     
     // non-mobile entities that may collide with actors
-    private List<Entity> entities;//TODO
+    private List<Entity> entities;
     
     // mobile actors that may collide and can be drawn
     private TreeMap<Integer, List<Actor>> layers;
@@ -39,6 +44,41 @@ public class Stage
         this.height = height;
         this.viewport = requireNonNull (viewport);
         this.layers = new TreeMap<> ();
+    }
+    
+    public boolean addEntity (Entity e)
+    {
+        return this.entities.add (e);
+    }
+    
+    public boolean removeEntity (Entity e)
+    {
+        return this.entities.remove (e);
+    }
+    
+    public boolean addActor (Integer layer, Actor actor)
+    {
+        if(!layers.containsKey (layer))
+        {
+            layers.put (layer, new ArrayList<> ());
+        }
+        
+        return layers.get (layer).add (actor);
+    }
+    
+    public boolean removeActor (Integer layer, Actor actor)
+    {
+        if (layers.containsKey (layer))
+        {
+            return layers.get (layer).remove (actor);
+        }
+        
+        return false;
+    }
+    
+    public void setTileMap (TileMap map)
+    {
+        this.tileMap = map;
     }
     
     public void setBackground (Background bg)
@@ -60,6 +100,8 @@ public class Stage
                 viewport.getOffsetX (),
                 viewport.getOffsetY ());
         }
+        
+        tileMap.draw (g, viewport.getOffsetX (), viewport.getOffsetY ());
         
         layers.values ()
             .forEach ((layer)
@@ -93,6 +135,9 @@ public class Stage
         {
             viewport.center (center);
         }
+        
+        calculateTileMapRange ();
+        tileMap.setRange (firstRow, firstColumn, lastRow, lastColumn);
     }
 
     private void detectExitStage ()//TODO
@@ -107,5 +152,9 @@ public class Stage
     {
         // first detect entity collisons
         // second detect actor collisons
+    }
+
+    private void calculateTileMapRange ()//TODO
+    {
     }
 }
