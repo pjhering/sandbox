@@ -65,6 +65,16 @@ public final class Utility
         
         throw new RuntimeException (min + " <= " + value);
     }
+    
+    public static long requireGreaterThan (long min, long value)
+    {
+        if (value > min)
+        {
+            return value;
+        }
+        
+        throw new RuntimeException (min + " <= " + value);
+    }
 
     public static float requireGreaterThan (float min, float value)
     {

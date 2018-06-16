@@ -2,6 +2,8 @@ package org.petehering.sandbox.sprites;
 
 import java.awt.Graphics2D;
 import static java.lang.System.currentTimeMillis;
+import static org.petehering.sandbox.Utility.requireGreaterThan;
+import static org.petehering.sandbox.Utility.requireNonNull;
 
 public class AnimatedSprite implements Drawable
 {
@@ -14,8 +16,8 @@ public class AnimatedSprite implements Drawable
 
     public AnimatedSprite (Drawable[] frames, long mpf)
     {
-        this.frames = frames;
-        this.millisPerFrame = mpf;
+        this.frames = requireNonNull (frames);
+        this.millisPerFrame = requireGreaterThan (0L, mpf);
         playedOnce = false;
         index = 0;
         elapsed = 0;
