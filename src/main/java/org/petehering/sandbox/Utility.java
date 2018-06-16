@@ -76,6 +76,26 @@ public final class Utility
         throw new RuntimeException (min + " <= " + value);
     }
 
+    public static int requireGreaterThanOrEqualTo (int min, int value)
+    {
+        if (value >= min)
+        {
+            return value;
+        }
+
+        throw new RuntimeException (min + " <= " + value);
+    }
+
+    public static float requireGreaterThanOrEqualTo (float min, float value)
+    {
+        if (value >= min)
+        {
+            return value;
+        }
+
+        throw new RuntimeException (min + " <= " + value);
+    }
+
     public static void log (Object obj, Object msg)
     {
         log (obj.getClass (), msg);

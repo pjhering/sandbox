@@ -12,6 +12,11 @@ public class DesktopApp
 {
     private final DesktopConfig config;
 
+    public DesktopApp ()
+    {
+        this (new DesktopConfig ());
+    }
+    
     public DesktopApp (DesktopConfig config)
     {
         this.config = config;
