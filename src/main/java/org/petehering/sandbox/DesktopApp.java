@@ -12,9 +12,24 @@ public class DesktopApp
 {
     private final DesktopConfig config;
 
-    public DesktopApp ()
+    public DesktopApp (Game game)
     {
-        this (new DesktopConfig ());
+        this (new DesktopConfig (game));
+    }
+
+    public DesktopApp (Game game, int width, int height)
+    {
+        this (new DesktopConfig (game, width, height));
+    }
+
+    public DesktopApp (Game game, DesktopInput input)
+    {
+        this (new DesktopConfig (game, input));
+    }
+
+    public DesktopApp (Game game, DesktopInput input, int width, int height)
+    {
+        this (new DesktopConfig (game, input, width, height));
     }
     
     public DesktopApp (DesktopConfig config)
