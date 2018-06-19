@@ -8,6 +8,8 @@ public final class Utility
     {
     }
     
+    public static final String SPACES = "\\s+";
+    
     public static float clamp (float value, float min, float max)
     {
         if (value < min)
