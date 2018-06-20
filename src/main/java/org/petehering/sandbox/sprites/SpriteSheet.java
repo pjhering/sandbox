@@ -46,6 +46,11 @@ public class SpriteSheet
         
         return array;
     }
+    
+    public BufferedImage subimage (int x, int y, int width, int height)
+    {
+        return image.getSubimage (x, y, width, height);
+    }
 
     public ImageSprite imageSprite (int x, int y, int width, int height)
     {
